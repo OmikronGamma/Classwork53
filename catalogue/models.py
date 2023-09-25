@@ -45,7 +45,7 @@ class AgeRestriction(models.Model):
         return self.age_restr
 
 
-class Counrty(models.Model):
+class Country(models.Model):
 
     movie_country = models.CharField(max_length=100)
 
@@ -57,7 +57,7 @@ class Movie(models.Model):
     title = models.CharField(max_length=100)
     genre = models.ForeignKey(to=Genre, on_delete=models.SET_DEFAULT, default=1)
     rating = models.FloatField()
-    country = models.ForeignKey(to=Counrty, on_delete=models.SET_NULL, null=True)
+    country = models.ForeignKey(to=Country, on_delete=models.SET_NULL, null=True)
     director = models.ForeignKey(to=Director, on_delete=models.SET_NULL, null=True)
     summary = models.TextField(max_length=9999)
     year = models.IntegerField()
