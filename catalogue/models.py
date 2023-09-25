@@ -26,7 +26,7 @@ from django.db import models
 
 class PetIllness(models.Model):
     illness_name = models.CharField(max_length=100)
-    illness_stage = models.IntegerField(max_length=100)
+    illness_stage = models.IntegerField()
 
     def __str__(self):
         return self.illness_name
@@ -43,7 +43,7 @@ class Treatment(models.Model):
 
 
 class VetClinic(models.Model):
-    pet_name = models.ForeignKey(max_length=100)
+    pet_name = models.CharField(max_length=100)
     pet_breed = models.CharField(max_length=100)
     pet_age = models.IntegerField()
     pet_illness = models.ForeignKey(to_fields=PetIllness, on_delete=models.SET_NULL, null=True)
