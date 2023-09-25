@@ -46,7 +46,7 @@ class VetClinic(models.Model):
     pet_name = models.CharField(max_length=100)
     pet_breed = models.CharField(max_length=100)
     pet_age = models.IntegerField()
-    pet_illness = models.ForeignKey(to_fields=PetIllness, on_delete=models.SET_NULL, null=True)
+    pet_illness = models.ForeignKey(to=PetIllness, on_delete=models.SET_NULL, null=True)
     pet_treatment = models.ManyToManyField(to=Treatment)
 
     def __str__(self):
