@@ -20,5 +20,9 @@ from catalogue import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='home')
+    path('', views.index, name='home'),
+    path('movies/', views.Movieslist.as_view(), name='allmovies'),
+    # path('info/<int:id>/', views.movieinfo, name='movieinfo'),
+    path('info/<slug:pk>/', views.Moviedetails.as_view(), name='movieinfo')
+
 ]

@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 
@@ -74,4 +75,9 @@ class Movie(models.Model):
             tempstr += a.actor_last_name + ' '
         return tempstr
     display_actors.short_description = 'Actor(s)'       # замена названия столбца на сайте
+
+
+    def get_absolute_url(self):
+        return reverse('movieinfo', args=[self.id])
+
 
