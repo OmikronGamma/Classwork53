@@ -91,6 +91,7 @@ DATABASES = {
     },
 }
 
+DATABASE_ROUTERS = ['catalogue.router.CatalogueRouter', 'vetclinic.router.VetClinicRouter']
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
