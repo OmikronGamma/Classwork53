@@ -25,7 +25,7 @@ class Treatment(models.Model):
     drug_period = models.IntegerField(verbose_name='Принимать Х дней:')
 
     def __str__(self):
-        return self.drug_title
+        return f'{self.drug_title}, {self.drug_dose}, {self.drug_intake} раза в день, в течении {self.drug_period} дней'
 
 
 
