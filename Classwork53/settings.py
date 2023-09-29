@@ -80,16 +80,18 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     },
-    'movies': {
-        'engine': 'django.db.backends.sqlite3',
+    'catalogue': {
+        'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db_movies.sqlite3',
     },
     'vetclinic': {
-        'engine': 'django.db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db_vet.sqlite3',
     },
 }
 
+
+DATABASE_ROUTERS = ['catalogue.router.CatalogueRouter', 'vetclinic.router.VetClinicRouter']
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
