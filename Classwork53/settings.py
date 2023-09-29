@@ -80,7 +80,15 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    },
+    'movies': {
+        'engine': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db_movies.sqlite3',
+    },
+    'vetclinic': {
+        'engine': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db_vet.sqlite3',
+    },
 }
 
 
