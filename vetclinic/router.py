@@ -20,6 +20,23 @@ class VetClinicRouter:
         if model._meta.app_label == 'vetclinic':
             return 'vetclinic'
         return None
-    ...
+
+    def allow_relation(self, obj1, obj2, **hints):
+        """
+        Allow relations if a model in the vetclinic app is involved.
+        """
+        if obj1._meta.app_label == 'vetclinic' or \
+           obj2._meta.app_label == 'vetclinic':
+           return True
+        return None
+
+    def allow_migrate(self, db, app_label, model_name=None, **hints):
+        """
+        Make sure the catalogue app only appears in the 'catalogue'
+        database.
+        """
+        if app_label == 'vetclinic':
+            return db == 'vetclinic'
+        return None
 
 # copy the other methods from CatalogueRouter and change 'catalogue' to 'vetclinic'
