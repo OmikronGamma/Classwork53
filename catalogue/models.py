@@ -1,51 +1,81 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 
 
-class PetIllnessStage(models.Model):
-    choice = (('Лёгкая', 'Лёгкая'), ('Средняя', 'Средняя'), ('Тяжёлая', 'Тяжёлая'))
-    illness_stage = models.CharField(max_length=100, choices=choice, verbose_name='Форма болезни:')
+class Genre(models.Model):
+    genre_name = models.CharField(max_length=100, verbose_name='Genre:')
 
     def __str__(self):
-        return self.illness_stage
+        return self.genre_name
 
 
-class PetIllnessName(models.Model):
-    illness_name = models.CharField(max_length=100, verbose_name='Название болезни:')
-
-    def __str__(self):
-        return self.illness_name
-
-
-class Treatment(models.Model):
-    drug_title = models.CharField(max_length=100, verbose_name='Название лекарства:')
-    drug_dose = models.CharField(max_length=100, verbose_name='Дозировка:')        # ?
-    drug_intake = models.IntegerField(verbose_name='Принимать Х раз в день:')
-    drug_period = models.IntegerField(verbose_name='Принимать Х дней:')
+class Director(models.Model):
+    director_first_name = models.CharField(max_length=100, verbose_name='Director first name:')
+    director_last_name = models.CharField(max_length=100, verbose_name='Director last name:')
 
     def __str__(self):
-        return f'{self.drug_title}, {self.drug_dose}, {self.drug_intake} раза в день, в течении {self.drug_period} дней'
+        return f'{self.director_last_name}, {self.director_first_name}'
 
 
-
-class Doctors(models.Model):
-    doc_first_name = models.CharField(max_length=100, verbose_name='Имя ветеринара:')
-    doc_last_name = models.CharField(max_length=100, verbose_name='Фамилия ветеринара:')
-
-    def __str__(self):
-        return f'{self.doc_last_name}, {self.doc_first_name}'
-
-
-class VetClinic(models.Model):
-    pet_name = models.CharField(max_length=100, verbose_name='Кличка:')
-    pet_breed = models.CharField(max_length=100, verbose_name='Порода:')
-    pet_age = models.IntegerField(verbose_name='Возраст:')
-    pet_illness_name = models.ForeignKey(to=PetIllnessName, on_delete=models.SET_NULL, null=True, verbose_name='Название болезни:')
-    pet_illness_stage = models.ForeignKey(to=PetIllnessStage, on_delete=models.SET_NULL, null=True, verbose_name='Форма болезни:')
-    pet_treatment = models.ManyToManyField(to=Treatment, verbose_name='Название лекарства:')
-    assigned_doctor = models.ForeignKey(to=Doctors, on_delete=models.SET_NULL, null=True, verbose_name='Лечащий врач:')
+class Actor(models.Model):
+    actor_first_name = models.CharField(max_length=100, verbose_name='Actor first name:')
+    actor_last_name = models.CharField(max_length=100, verbose_name='Actor last name:')
+    actor_birth_date = models.DateField(null=True, blank=True, verbose_name='Date of birth:')
+    actor_country = models.CharField(max_length=100, verbose_name='Born in _ country:')
 
     def __str__(self):
-        return self.pet_name
+        return self.actor_last_name
 
+
+class Subscription(models.Model):
+    subs_selection = (('bronze', 'BRONZE'), ('silver', 'SILVER'), ('gold', 'GOLD'))
+    subscription_type = models.CharField(max_length=100, choices=subs_selection, verbose_name='Subscription type:')
+
+    def __str__(self):
+        return self.subscription_type
+
+
+
+class AgeRestriction(models.Model):
+    choice = (('G', 'G'), ('PG', 'PG'), ('PG-13', 'PG-13'), ('R', 'R'), ('NC-17', 'NC-17'))
+    age_restr = models.CharField(max_length=20, choices=choice, verbose_name='Age restriction:')
+
+    def __str__(self):
+        return self.age_restr
+
+
+class Country(models.Model):
+
+    movie_country = models.CharField(max_length=100, verbose_name='Production country:')
+
+    def __str__(self):
+        return self.movie_country
+
+
+class Movie(models.Model):
+    title = models.CharField(max_length=100, verbose_name='Movie title:')
+    genre = models.ForeignKey(to=Genre, on_delete=models.SET_DEFAULT, default=1)
+    rating = models.FloatField(verbose_name='Critics score:')
+    country = models.ForeignKey(to=Country, on_delete=models.SET_NULL, null=True)
+    director = models.ForeignKey(to=Director, on_delete=models.SET_NULL, null=True)
+    summary = models.TextField(max_length=9999, verbose_name='Movie synopsis:')
+    year = models.IntegerField(verbose_name='Production year(s):')
+    age_rate = models.ForeignKey(to=AgeRestriction, on_delete=models.SET_NULL, null=True)
+    actors = models.ManyToManyField(to=Actor, verbose_name='Actors list:')
+    subscription = models.ForeignKey(to=Subscription, on_delete=models.SET_NULL, null=True)
+
+    def __str__(self):
+        return self.title
+
+    def display_actors(self):
+        tempstr = ''
+        for a in self.actors.all():
+            tempstr += a.actor_last_name + ' '
+        return tempstr
+    display_actors.short_description = 'Actor(s)'       # замена названия столбца на сайте
+
+
+    def get_absolute_url(self):
+        return reverse('movieinfo', args=[self.id])
