@@ -38,5 +38,3 @@ class VetClinicRouter:
         if app_label == 'vetclinic':
             return db == 'vetclinic'
         return None
-
-# copy the other methods from CatalogueRouter and change 'catalogue' to 'vetclinic'
