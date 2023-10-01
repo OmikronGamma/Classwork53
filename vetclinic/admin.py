@@ -10,13 +10,11 @@ class Docadmin(admin.ModelAdmin):
 
 
 class VetClinicadmin(admin.ModelAdmin):
-    # list_display = ('title', 'year', 'director', 'display_actors')
+    list_display = ('pet_name', 'pet_illness_name', 'assigned_doctor')
     list_filter = ('pet_name', 'assigned_doctor', 'pet_illness_name')       # появляется меню с фильтрами в админке
     fieldsets = (('Сведения о животинке', {'fields': ('pet_name', 'pet_age', 'pet_breed')}),     # форматирование/разметка страницы конкретного фильма
                  ('Лечение', {'fields': ('assigned_doctor', 'pet_illness_name', 'pet_illness_stage', 'pet_treatment')}),
                  )
-
-
 
 
 
