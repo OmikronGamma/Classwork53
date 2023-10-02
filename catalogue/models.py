@@ -76,8 +76,7 @@ class Movie(models.Model):
         return tempstr
     display_actors.short_description = 'Actor(s)'       # замена названия столбца на сайте
 
-
     def get_absolute_url(self):
-        return reverse('movieinfo', args=[self.id])
+        return reverse('movieinfo', args=[self.id, self.title])
 
 

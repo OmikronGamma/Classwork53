@@ -11,7 +11,8 @@
 </head>
 <body>
     <a href="/admin/">ADMIN</a>
-    <h2>Movies catalogue</h2>
+{#    <h2>Movies catalogue</h2>#}
+    <h2>Welcome, {{ username }}</h2>
 
     {% block menu %}
         <div class="menu">
@@ -20,6 +21,8 @@
             <a href="">Directors</a>
             <a href="">Subscription</a>
             <a href="{% url 'home' %}">GLAGNE</a>
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'logout' %}">Logout</a>
         </div>
     {% endblock menu %}
 
@@ -29,6 +32,28 @@
         <h2>There are {{ xxx }} directors in the DB</h2>
         <h2>There are {{ xxxx }} bronze tier movies in the DB</h2>
     {% endblock content %}
+
+    {# Код для блока с навигацией по страницам, если выводится определённое кол-во фильмов (кол-во указано во views  "paginate_by = X")      #}
+    {% if is_paginated %}
+
+    <div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+    </div>
+    {% endif %}
 
 
 </body>
