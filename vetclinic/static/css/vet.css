@@ -17,7 +17,22 @@ body {
     font-size: 30px;
 }
 
+.pet-link a {
+    text-decoration: none;
+    color: #00ff00;
+    font-size: 30px;
+}
+
+.pet-link a:hover {
+    text-decoration: underline #00ff00;
+    transform: scale(105%);
+}
+
 .menu a:hover{
     text-decoration: underline crimson;
     transform: scale(105%);
+}
+
+span {
+    color: #ff0000;
 }

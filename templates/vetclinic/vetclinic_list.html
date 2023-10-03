@@ -1,12 +1,12 @@
 {% extends 'index.html' %}
 
 {% block content %}
-    <h2>Patients:</h2>
+    <h2>Пациенты:</h2>
     <ul>
         {% for i in vetclinic_list %}
             <li>
-                <a href="{{ i.get_absolute_url }}">{{ i.pet_name }}</a>
-                {{ i.pet_illness_name }}
+                <p class="pet-link"><a href="{{ i.get_absolute_url }}">{{ i.pet_name }}</a></p>
+                <p>{{ i.pet_illness_name }}</p>
             </li>
         {% endfor %}
     </ul>

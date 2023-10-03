@@ -1,0 +1,13 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <h2>Пациент <span>{{ vetclinic.pet_name }}</span></h2>
+    <h3>У него <span>{{ vetclinic.pet_illness_name }}</span></h3>
+    <h3>Его лечащий врач <span>{{ vetclinic.assigned_doctor }}</span></h3>
+
+    <h3>Ему назначено:</h3>
+    {% for i in vetclinic.pet_treatment.all %}
+        <span><h4> {{ i.drug_title }}, {{ i.drug_dose }}, {{ i.drug_intake }} раза в день, в течении {{ i.drug_period }}
+            дней</h4></span>
+    {% endfor %}
+{% endblock content %}

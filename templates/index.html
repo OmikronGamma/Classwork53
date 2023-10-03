@@ -14,16 +14,16 @@
 
     {% block menu %}
         <div class="menu">
-            <a href="">Главная</a>
+            <a href="{% url 'home' %}">Главная</a>
             <a href="{% url 'patients' %}">Пациенты</a>
             <a href="">Доктора</a>
         </div>
     {% endblock menu %}
 
     {% block content %}
-        <h2>На лечении {{ pets_amount }} животинок</h2>
-        <h2>Их лечат {{ docs_amount }} ветврачей</h2>
-        <h2>С лёгкой формой болезни {{ light_illness_amount }} пациента(ов)</h2>
+        <h2>На лечении <span>{{ pets_amount }}</span> животинки(ок)</h2>
+        <h2>Их лечат <span>{{ docs_amount }}</span> ветврача(ей)</h2>
+        <h2>С лёгкой формой болезни <span>{{ light_illness_amount }}</span> пациента(ов)</h2>
     {% endblock content %}
 
 </body>
