@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 
@@ -49,3 +50,5 @@ class VetClinic(models.Model):
     def __str__(self):
         return self.pet_name
 
+    def get_absolute_url(self):
+        return reverse('vetinfo', args=[self.id])

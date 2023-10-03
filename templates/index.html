@@ -2,15 +2,29 @@
 {% load static %}
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="{% static 'css/1.css' %}">
     <meta charset="UTF-8">
+    {% block head %}
+    <link rel="stylesheet" href="{% static 'css/vet.css' %}">
     <title>Catalogue</title>
+    {% endblock head %}
 </head>
 <body>
 
-    <h2>Movies catalogue</h2>
     <a href="/admin/">ADMIN</a>
 
+    {% block menu %}
+        <div class="menu">
+            <a href="">Главная</a>
+            <a href="{% url 'patients' %}">Пациенты</a>
+            <a href="">Доктора</a>
+        </div>
+    {% endblock menu %}
+
+    {% block content %}
+        <h2>На лечении {{ pets_amount }} животинок</h2>
+        <h2>Их лечат {{ docs_amount }} ветврачей</h2>
+        <h2>С лёгкой формой болезни {{ light_illness_amount }} пациента(ов)</h2>
+    {% endblock content %}
 
 </body>
 </html>

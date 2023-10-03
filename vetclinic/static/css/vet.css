@@ -1,0 +1,23 @@
+body {
+    background-color: darkgray;
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    background-color: #636262;
+    line-height: 5em;
+    /*font-size: 30px;*/
+}
+
+.menu a {
+    text-decoration: none;
+    color: cyan;
+    font-size: 30px;
+}
+
+.menu a:hover{
+    text-decoration: underline crimson;
+    transform: scale(105%);
+}
