@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block head %}
+        <link rel="stylesheet" href="{% static 'css/actors_details.css' %}">
+{% endblock head %}
+
+{% block content %}
+    <h2 class="actor-name">{{ actor.actor_first_name }} {{ actor.actor_last_name }}</h2>
+    <h3 class="featured-in">featured in:</h3>
+    <ul class="movie-list">
+        {% for i in actor.movie_set.all %}
+            <li class="movie-title">{{ i.title }}</li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

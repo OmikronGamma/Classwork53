@@ -1,0 +1,38 @@
+.actor-title {
+    color: #444;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.actor-list {
+    list-style-type: none;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+.actor-item {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.actor-item:last-child {
+    border-bottom: none;
+}
+
+.actor-link {
+    text-decoration: none;
+    color: #0088cc;
+}
+
+.actor-link:hover {
+    color: #005580;
+}
+
+.actor-last-name,
+.actor-first-name {
+    margin: 0;
+}

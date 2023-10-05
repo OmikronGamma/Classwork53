@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 # Create your views here.
 
 
-def index(request):
+def index(request):     # index/home
     movies_amount = Movie.objects.all().count()
     actors_amount = Actor.objects.all().count()
     directors_amount = Director.objects.all().count()
@@ -32,21 +32,21 @@ def index(request):
 #     return render(request, 'index.html')
 
 
-class Movieslist(generic.ListView):
+class Movieslist(generic.ListView):     # для вывода списка фильмов
     model = Movie
     paginate_by = 3     # выводить по Х фильмов на странице
 
-# def movieinfo(request, id):
+# def movieinfo(request, id):           # вариант реализации
 #     # return render(request, 'index.html')
 #     movie = Movie.objects.get(id=id)
 #     return HttpResponse(movie.title)
 
 
-class Moviedetails(generic.DetailView):
+class Moviedetails(generic.DetailView):     # для детального показа конкретного фильма
     model = Movie
 
 
-def subscr(request):
+def subscr(request):        # для страницы подписок
     try:
         welcome_user_name = request.user.first_name
     # else:
@@ -78,3 +78,19 @@ def watcher(request, id1, id2, id3):
     else:
         print('Not Ok')
     return render(request, 'index.html')
+
+
+class Actorslist(generic.ListView):
+    model = Actor
+
+
+class Actordetails(generic.DetailView):
+    model = Actor
+
+
+class Directorslist(generic.ListView):
+    model = Director
+
+
+class Directordetails(generic.DetailView):
+    model = Director

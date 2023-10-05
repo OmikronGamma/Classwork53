@@ -18,6 +18,9 @@ class Director(models.Model):
     def __str__(self):
         return f'{self.director_last_name}, {self.director_first_name}'
 
+    def get_absolute_url(self):
+        return reverse('directorinfo', args=[self.id, self.director_last_name])
+
 
 class Actor(models.Model):
     actor_first_name = models.CharField(max_length=100, verbose_name='Actor first name:')
@@ -27,6 +30,9 @@ class Actor(models.Model):
 
     def __str__(self):
         return self.actor_last_name
+
+    def get_absolute_url(self):
+        return reverse('actorinfo', args=[self.id, self.actor_last_name])
 
 
 class Subscription(models.Model):

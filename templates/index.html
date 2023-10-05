@@ -17,8 +17,8 @@
     {% block menu %}
         <div class="menu">
             <a href="{% url 'allmovies' %}">Movies</a>
-            <a href="">Actors</a>
-            <a href="">Directors</a>
+            <a href="{% url 'allactors' %}">Actors</a>
+            <a href="{% url 'alldirectors' %}">Directors</a>
             <a href="{% url 'subscr' %}">Subscriptions</a>
             <a href="{% url 'home' %}">GLAGNE</a>
             {% if not user.username %}

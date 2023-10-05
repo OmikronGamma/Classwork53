@@ -1,0 +1,37 @@
+.title {
+    color: #0a0a0a;
+    font-family: Arial, sans-serif;
+}
+
+.director-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.director-item {
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.director-link {
+    text-decoration: none;
+    color: #333;
+}
+
+.director-link .director-last-name {
+    font-weight: bold;
+    margin: 0;
+    font-size: 30px;
+    color: #483f3f;
+}
+
+.director-first-name {
+    color: #535662;
+    margin-top: 5px;
+    font-size: 25px;
+
+}
