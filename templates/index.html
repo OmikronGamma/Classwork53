@@ -3,9 +3,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/1.css' %}">
     {% block head %}
         <title>Catalogue</title>
-        <link rel="stylesheet" href="{% static 'css/1.css' %}">
         <link rel="icon" href="{% static 'catalogue/favicon.ico' %}">
     {% endblock head %}
 </head>
@@ -19,10 +19,13 @@
             <a href="{% url 'allmovies' %}">Movies</a>
             <a href="">Actors</a>
             <a href="">Directors</a>
-            <a href="">Subscription</a>
+            <a href="{% url 'subscr' %}">Subscriptions</a>
             <a href="{% url 'home' %}">GLAGNE</a>
-            <a href="{% url 'login' %}">Login</a>
-            <a href="{% url 'logout' %}">Logout</a>
+            {% if not user.username %}
+                <a href="{% url 'login' %}">Login</a>
+            {% else %}
+                <a href="{% url 'logout' %}">Logout</a>
+            {% endif %}
         </div>
     {% endblock menu %}
 

@@ -65,6 +65,7 @@ class Movie(models.Model):
     age_rate = models.ForeignKey(to=AgeRestriction, on_delete=models.SET_NULL, null=True)
     actors = models.ManyToManyField(to=Actor, verbose_name='Actors list:')
     subscription = models.ForeignKey(to=Subscription, on_delete=models.SET_NULL, null=True)
+    movie_poster = models.CharField(max_length=255, blank=True, null=True, verbose_name='Movie poster:')
 
     def __str__(self):
         return self.title
