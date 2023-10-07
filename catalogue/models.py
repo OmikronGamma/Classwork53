@@ -26,7 +26,7 @@ class Actor(models.Model):
     actor_first_name = models.CharField(max_length=100, verbose_name='Actor first name:')
     actor_last_name = models.CharField(max_length=100, verbose_name='Actor last name:')
     actor_birth_date = models.DateField(null=True, blank=True, verbose_name='Date of birth:')
-    actor_country = models.CharField(max_length=100, verbose_name='Born in _ country:')
+    actor_country = models.CharField(max_length=100, verbose_name='Born in:', null=True, blank=True)
 
     def __str__(self):
         return self.actor_last_name
