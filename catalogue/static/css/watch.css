@@ -1,0 +1,10 @@
+.screen {
+    width: 48em;
+    height: 27em;
+    border: 3px solid #000000;
+    border-radius: 5px;
+    overflow: hidden;
+    text-align: center;
+    background-color: #ffffff;
+}
+

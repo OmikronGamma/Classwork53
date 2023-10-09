@@ -31,5 +31,5 @@ urlpatterns = [
     path('user/', include('django.contrib.auth.urls')),
     path('subscr/', views.subscr, name='subscr'),
     path('subscr/watcher/<int:id1>/<int:id2>/<int:id3>', views.watcher, name='watcher'),
-
+    path('subscr/buy/<int:type>', views.buy, name='buysub')
 ]

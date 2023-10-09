@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .models import *
 from django.views import generic
 from django.http import HttpResponse
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 # Create your views here.
 
 
@@ -34,7 +34,7 @@ def index(request):     # index/home
 
 class Movieslist(generic.ListView):     # для вывода списка фильмов
     model = Movie
-    paginate_by = 3     # выводить по Х фильмов на странице
+    paginate_by = 5     # выводить по Х фильмов на странице
 
 # def movieinfo(request, id):           # вариант реализации
 #     # return render(request, 'index.html')
@@ -59,38 +59,65 @@ def subscr(request):        # для страницы подписок
     return render(request, 'subscription.html', data)
 
 
-def watcher(request, id1, id2, id3):
+def watcher(request, id1, id2, id3):        # для просмотра фильма
     print('movie id', 'subscr id', 'user id')
     print('id1', 'id2', 'id3')
     print(id1, id2, id3)
     subscription = None
     array_subscription = ['bronze', 'silver', 'gold']
     array_user_tier = ['bronze tier', 'silver tier', 'gold tier']
-    if id3 != 0:
+    if id3 != 0:        # проверка для не-гостя
         subscription = User.objects.get(id=id3)     # нашли юзера
         subscription = subscription.groups.all()    # нашли его подписки
         subscription = subscription[0].id           # нашли id подписки
-    else:
+    else:       # если гость
         if id3 == 0:                                # если гость, даём ему базовую подписку
             subscription = 1
     if subscription >= id2:                     # сравнение прав пользователя и прав фильма
         print('ok')
+        permission = True
     else:
         print('Not Ok')
-    return render(request, 'index.html')
+        permission = False
+    movie_title = Movie.objects.get(id=id1).title
+    subscriptiontier = Group.objects.get(id=subscription).name
+    subscriptionmovie = Subscription.objects.get(id=id2).subscription_type
+
+    try:
+        welcome_user_name = request.user.first_name
+    except:
+        welcome_user_name = 'Guest'
+
+    data = {'movie': movie_title, 'subscriptiontier': subscriptiontier, 'subscriptionmovie': subscriptionmovie, 'permission': permission, 'username': welcome_user_name}
+    return render(request, 'watch.html', data)
 
 
-class Actorslist(generic.ListView):
+class Actorslist(generic.ListView):     # для вывода актёров
+    model = Actor
+    paginate_by = 5
+
+
+class Actordetails(generic.DetailView):     # для вывода актёров
     model = Actor
 
 
-class Actordetails(generic.DetailView):
-    model = Actor
+class Directorslist(generic.ListView):      # для вывода режиссёров
+    model = Director
+    paginate_by = 5
 
 
-class Directorslist(generic.ListView):
+class Directordetails(generic.DetailView):      # для вывода режиссёров
     model = Director
 
 
-class Directordetails(generic.DetailView):
-    model = Director
+def buy(request, type):     # для покупки подписки
+    user_id = request.user.id       # находим айди юзера, как число
+    user_db = User.objects.get(id=user_id)     # находим айди юзера в таблице
+    user_sub_type = user_db.groups.all()[0].id     # подписка юзера
+    user_group = Group.objects.get(id=user_sub_type)       # группа юзера
+    user_group.user_set.remove(user_db)     # удаляем юзера из группы
+    group_to_add = Group.objects.get(id=type)       # ищем новую группу (из ссылки, куда надо купить подписку)
+    group_to_add.user_set.add(user_db)      # записываем юзера в группу
+    sub_type = group_to_add.name
+    data = {'subscription': sub_type}
+    return render(request, 'buy.html', data)

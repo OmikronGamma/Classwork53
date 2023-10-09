@@ -1,0 +1,39 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block head %}
+    <title>Watch here</title>
+    <link rel="stylesheet" href="{% static 'css/watch.css' %}">
+{% endblock head %}
+
+{% block content %}
+    <h2>Movie {{ movie }}</h2>
+    <div class="screen">
+        {% if permission %}
+            <h3>Enjoy your movie!</h3>
+        {% else %}
+            <h3>Your subscription type is not enough</h3>
+        {% endif %}
+    </div>
+    <h3>Your subscription {{ subscriptiontier }}</h3>
+    <h3>Movie subscription {{ subscriptionmovie }}</h3>
+    {% if not permission %}
+        {% if user.username %}
+            <h4>
+                <a href="{% url 'buysub' type=2 %}">Buy Silver Tier.</a>
+            </h4>
+
+            <h4>
+                <a href="{% url 'buysub' type=3 %}">Buy Gold Tier.</a>
+            </h4>
+        {% else %}
+            <h4>
+                <a href="{% url 'login' %}">Buy Silver Tier.</a>
+            </h4>
+
+            <h4>
+                <a href="{% url 'login' %}">Buy Gold Tier.</a>
+            </h4>
+        {% endif %}
+    {% endif %}
+
+{% endblock content %}
