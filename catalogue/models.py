@@ -16,7 +16,8 @@ class Director(models.Model):
     director_last_name = models.CharField(max_length=100, verbose_name='Director last name:')
 
     def __str__(self):
-        return f'{self.director_last_name}, {self.director_first_name}'
+        # return f'{self.director_last_name}, {self.director_first_name}'
+        return f'{self.director_first_name} {self.director_last_name}'
 
     def get_absolute_url(self):
         return reverse('directorinfo', args=[self.id, self.director_last_name])
