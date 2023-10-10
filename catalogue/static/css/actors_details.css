@@ -4,11 +4,11 @@
     text-align: center;
 }
 
-.featured-in {
-    color: #000000;
-    margin-bottom: 5px;
-    text-align: center;
-}
+/*.featured-in {*/
+/*    color: #000000;*/
+/*    margin-bottom: 5px;*/
+/*    text-align: center;*/
+/*}*/
 
 .movie-list {
     list-style-type: none;
@@ -27,4 +27,8 @@
 
 .movie-title:last-child {
     border-bottom: none;
+}
+
+span {
+    color: #005580FF;
 }

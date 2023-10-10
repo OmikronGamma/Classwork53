@@ -8,7 +8,7 @@
     <h2 class="works-title">Movies directed:</h2>
     {% for i in director.movie_set.all %}
         <ul class="works-list">
-            <li class="works-item">{{ i.title }}</li>
+            <li class="works-item">{{ i.title }} ({{ i.year }}, {{ i.genre }})</li>
         </ul>
     {% endfor %}
 {% endblock content %}
