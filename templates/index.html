@@ -2,11 +2,12 @@
 {% load static %}
 <html lang="en">
 <head>
-    <title>Catalogue</title>
+
     <meta charset="UTF-8">
     <link rel="icon" href="{% static 'catalogue/favicon.ico' %}">
     <link rel="stylesheet" href="{% static 'css/1.css' %}">
     {% block head %}
+        <title>Catalogue</title>
     {% endblock head %}
 </head>
 <body>
@@ -19,7 +20,7 @@
             <a href="{% url 'allmovies' %}">Movies</a>
             <a href="{% url 'allactors' %}">Actors</a>
             <a href="{% url 'alldirectors' %}">Directors</a>
-            <a href="{% url 'subscr' %}">Subscriptions</a>
+            <a href="{% url 'subscr' %}">Movies catalogue</a>
             <a href="{% url 'home' %}">GLAGNE</a>
             {% if not user.username %}
                 <a href="{% url 'login' %}">Login</a>

@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <link rel="icon" href="{% static 'catalogue/favicon.ico' %}">
     <link rel="stylesheet" href="{% static 'css/1.css' %}">
 </head>
 <body>
@@ -25,5 +26,7 @@
         </table>
         <input type="submit" value="LOGIN">
     </form>
+
+    <h2>or <a href="{% url 'registration' %}">REGISTER</a></h2>
 </body>
 </html>

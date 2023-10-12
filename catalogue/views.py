@@ -3,6 +3,9 @@ from .models import *
 from django.views import generic
 from django.http import HttpResponse
 from django.contrib.auth.models import User, Group
+from catalogue import forms
+from django.shortcuts import redirect
+from django.contrib.auth import authenticate, login
 # Create your views here.
 
 
@@ -121,3 +124,29 @@ def buy(request, type):     # для покупки подписки
     sub_type = group_to_add.name
     data = {'subscription': sub_type}
     return render(request, 'buy.html', data)
+
+
+
+def registration(request):          # для регистрации
+    if request.POST:
+        regform = forms.Registration(request.POST)
+        if regform.is_valid():
+            print('ok')
+            regform.save()      # сохраняем данные?
+            logininfo = regform.cleaned_data.get('username')
+            password = regform.cleaned_data.get('password1')
+            user = authenticate(username=logininfo, password=password)
+            login(request, user)
+            bronze_tier = Group.objects.get(id=1)       # ищем базовую подписку
+            bronze_tier.user_set.add(user)              # добавляем её новому пользователю
+
+
+
+            # man = User.objects.get(username=logininfo)
+            # man.first_name = k1
+
+            return redirect('home')
+    else:
+        regform = forms.Registration
+    data = {'regform': regform}
+    return render(request, 'registration/registration.html', data)
