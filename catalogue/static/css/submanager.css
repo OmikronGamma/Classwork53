@@ -1,0 +1,12 @@
+button  {
+    width: 10em;
+    height: 2em;
+    font-size: 2em;
+    margin: 10px;
+}
+
+button:hover {
+    transform: scale(103%);
+    box-shadow: rgba(114, 253, 253, 0.84) 0 0 15px;
+}
+

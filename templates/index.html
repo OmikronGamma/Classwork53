@@ -22,6 +22,7 @@
             <a href="{% url 'alldirectors' %}">Directors</a>
             <a href="{% url 'subscr' %}">Movies catalogue</a>
             <a href="{% url 'home' %}">GLAGNE</a>
+            <a href="{% url 'submanager' %}">Submanager</a>
             {% if not user.username %}
                 <a href="{% url 'login' %}">Login</a>
             {% else %}

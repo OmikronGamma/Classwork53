@@ -150,3 +150,57 @@ def registration(request):          # для регистрации
         regform = forms.Registration
     data = {'regform': regform}
     return render(request, 'registration/registration.html', data)
+
+
+def submanager(request):
+    user_id = request.user.id       # находим айди юзера, как число
+    user_db = User.objects.get(id=user_id)     # находим айди юзера в таблице
+    user_sub_type = user_db.groups.all()[0].id     # подписка юзера
+    subtier = Group.objects.get(id=user_sub_type)       # группа юзера
+    data = {'subtier': subtier, 'user_sub_type': user_sub_type}
+    return render(request, 'submanager.html', data)
+
+
+def switch_to_bronze(request):
+    if request.method == 'POST':
+        user_id = request.user.id  # находим айди юзера, как число
+        user_db = User.objects.get(id=user_id)  # находим айди юзера в таблице
+        user_sub_type = user_db.groups.all()[0].id  # подписка юзера
+        user_group = Group.objects.get(id=user_sub_type)  # группа юзера
+        user_group.user_set.remove(user_db)  # удаляем юзера из группы
+        group_to_add = Group.objects.get(id=1)  # ищем новую группу (из ссылки, куда надо купить подписку)
+        group_to_add.user_set.add(user_db)  # записываем юзера в группу
+        sub_type = group_to_add.name        # выводим имя подписки
+        data = {'subscription': sub_type, 'user_sub_type': user_sub_type}
+        # return render(request, 'submanager.html', data)
+        return render(request, 'buy.html', data)
+
+
+def switch_to_silver(request):
+    if request.method == 'POST':
+        user_id = request.user.id  # находим айди юзера, как число
+        user_db = User.objects.get(id=user_id)  # находим айди юзера в таблице
+        user_sub_type = user_db.groups.all()[0].id  # подписка юзера
+        user_group = Group.objects.get(id=user_sub_type)  # группа юзера
+        user_group.user_set.remove(user_db)  # удаляем юзера из группы
+        group_to_add = Group.objects.get(id=2)  # ищем новую группу (из ссылки, куда надо купить подписку)
+        group_to_add.user_set.add(user_db)  # записываем юзера в группу
+        sub_type = group_to_add.name        # выводим имя подписки
+        data = {'subscription': sub_type, 'user_sub_type': user_sub_type}
+        # return render(request, 'submanager.html', data)
+        return render(request, 'buy.html', data)
+
+
+def switch_to_gold(request):
+    if request.method == 'POST':
+        user_id = request.user.id  # находим айди юзера, как число
+        user_db = User.objects.get(id=user_id)  # находим айди юзера в таблице
+        user_sub_type = user_db.groups.all()[0].id  # подписка юзера
+        user_group = Group.objects.get(id=user_sub_type)  # группа юзера
+        user_group.user_set.remove(user_db)  # удаляем юзера из группы
+        group_to_add = Group.objects.get(id=3)  # ищем новую группу (из ссылки, куда надо купить подписку)
+        group_to_add.user_set.add(user_db)  # записываем юзера в группу
+        sub_type = group_to_add.name        # выводим имя подписки
+        data = {'subscription': sub_type, 'user_sub_type': user_sub_type}
+        # return render(request, 'submanager.html', data)
+        return render(request, 'buy.html', data)

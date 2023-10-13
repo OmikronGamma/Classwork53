@@ -32,5 +32,10 @@ urlpatterns = [
     path('subscr/', views.subscr, name='subscr'),
     path('subscr/watcher/<int:id1>/<int:id2>/<int:id3>', views.watcher, name='watcher'),
     path('subscr/buy/<int:type>', views.buy, name='buysub'),
-    path('user/registration/', views.registration, name='registration')
+    path('user/registration/', views.registration, name='registration'),
+    path('submanager/', views.submanager, name='submanager'),
+    path('switch_to_bronze/', views.switch_to_bronze, name='switch_to_bronze'),
+    path('switch_to_silver/', views.switch_to_silver, name='switch_to_silver'),
+    path('switch_to_gold/', views.switch_to_gold, name='switch_to_gold'),
+
 ]
