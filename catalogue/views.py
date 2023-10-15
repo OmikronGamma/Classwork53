@@ -140,8 +140,6 @@ def registration(request):          # для регистрации
             bronze_tier = Group.objects.get(id=1)       # ищем базовую подписку
             bronze_tier.user_set.add(user)              # добавляем её новому пользователю
 
-
-
             # man = User.objects.get(username=logininfo)
             # man.first_name = k1
 
