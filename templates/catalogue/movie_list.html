@@ -1,0 +1,13 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <h2>Movies:</h2>
+    <ul>
+        {% for i in movie_list %}
+            <li>
+                <a href="{{ i.get_absolute_url }}"><p>{{ i.title }}</p></a>
+                <p>{{ i.genre }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

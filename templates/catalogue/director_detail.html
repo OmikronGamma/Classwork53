@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/directors_details.css' %}">
+{% endblock head %}
+{% block content %}
+    <h2 class="director-name">{{ director.director_first_name }} {{ director.director_last_name }}</h2>
+    <h2 class="works-title">Movies directed:</h2>
+    {% for i in director.movie_set.all %}
+        <ul class="works-list">
+            <li class="works-item">{{ i.title }} ({{ i.year }}, {{ i.genre }})</li>
+        </ul>
+    {% endfor %}
+{% endblock content %}

@@ -1,0 +1,27 @@
+.director-name {
+    color: #1e90ff;
+    font-family: Arial, sans-serif;
+    font-size: 35px;
+}
+
+.works-title {
+    margin-top: 20px;
+    font-family: Arial, sans-serif;
+    color: #333;
+    font-size: 20px;
+}
+
+.works-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.works-item {
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 30px;
+}

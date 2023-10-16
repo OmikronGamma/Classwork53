@@ -1,0 +1,18 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block head %}
+        <link rel="stylesheet" href="{% static 'css/actors_lists.css' %}">
+    <title>List of actors</title>
+{% endblock head %}
+
+{% block content %}
+    <ul class="actor-list">
+        {% for actor in actor_list %}
+            <li class="actor-item">
+                <a class="actor-link" href="{{ actor.get_absolute_url }}"><p class="actor-last-name">{{ actor.actor_last_name }}</p></a>
+                <p class="actor-first-name">{{ actor.actor_first_name }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

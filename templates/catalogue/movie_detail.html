@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <h2>Movie: {{ movie.title }}</h2>
+    <h3>Genre: {{ movie.genre }}</h3>
+    <h3>Description: {{ movie.summary }}</h3>
+    <h3>Director: {{ movie.director }}</h3>
+    <h3>Actors:
+        {% for actor in movie.actors.all %}
+            <p>{{ actor.actor_first_name }} {{ actor.actor_last_name }}</p>
+        {% endfor %}
+    </h3>
+    <h3>Rating: {{ movie.rating }}</h3>
+    <h3>Subscription type: {{ movie.subscription }}</h3>
+{% endblock content %}
+

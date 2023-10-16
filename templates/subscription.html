@@ -1,0 +1,36 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block head %}
+    <title>Catalogue</title>
+    <link rel="stylesheet" href="{% static 'css/subscr.css' %}">
+{% endblock head %}
+
+{% block content %}
+    {% for i in subscriptions %}
+        <h3 class="main">{{ i.subscription_type }}</h3>
+        <div class="cont">
+        {% for j in i.movie_set.all %}
+            <div class="card">
+                <img src="{% static j.movie_poster %}" alt="poster">
+                <p class="title">{{ j.title }}</p>
+                <p class="year">{{ j.year }}</p>
+                <p class="director">{{ j.director }}</p>
+
+                {% if not user.username %}
+                <a href="{% url 'watcher' j.id i.id 0 %}">
+                    <button class="watch-btn">WATCH!</button>
+                </a>
+                {% else %}
+                <a href="{% url 'watcher' j.id i.id user.id %}">
+                    <button class="watch-btn">WATCH!</button>
+                </a>
+                {% endif %}
+
+                <br>
+            </div>
+
+            {% endfor %}
+        </div>
+    {% endfor %}
+
+{% endblock content %}

@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/directors_list.css' %}">
+    <title>List of directors</title>
+{% endblock head %}
+
+{% block content %}
+    <ul class="director-list">
+        {% for director in director_list %}
+            <li class="director-item">
+                <a class="director-link" href="{{ director.get_absolute_url }}"><p class="director-last-name">{{ director.director_last_name }}</p></a>
+                <p class="director-first-name">{{ director.director_first_name }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock content %}
