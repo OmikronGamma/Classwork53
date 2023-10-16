@@ -37,5 +37,15 @@ urlpatterns = [
     path('switch_to_bronze/', views.switch_to_bronze, name='switch_to_bronze'),
     path('switch_to_silver/', views.switch_to_silver, name='switch_to_silver'),
     path('switch_to_gold/', views.switch_to_gold, name='switch_to_gold'),
-
 ]
+
+
+
+
+
+'''
+reset_form
+reset_done
+reset_confirm
+reset_complete
+'''
