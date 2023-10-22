@@ -202,3 +202,21 @@ def switch_to_gold(request):
         data = {'subscription': sub_type, 'user_sub_type': user_sub_type}
         # return render(request, 'submanager.html', data)
         return render(request, 'buy.html', data)
+
+
+def search(request):
+    if request.POST:
+        search_form = forms.Searchform(request.POST)
+        movie_to_search = request.POST.get('search_field')
+        found_movie = Movie.objects.filter(title__icontains=movie_to_search)
+        if len(found_movie) == 0:
+            found_movie = 0
+    else:
+        search_form = forms.Searchform
+        found_movie = None
+    try:
+        welcome_user_name = request.user.first_name
+    except:
+        welcome_user_name = 'Guest'
+    data = {'search': search_form, 'found_movie': found_movie, 'username': welcome_user_name}
+    return render(request, 'search.html', data)

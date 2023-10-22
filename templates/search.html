@@ -1,0 +1,29 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block head %}
+    <title>search</title>
+    <link rel="stylesheet" href="{% static 'css/subscr.css' %}">
+    <link rel="stylesheet" href="{% static 'css/search.css' %}">
+{% endblock head %}
+
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="search-form">{{ search }}</div>
+        <input type="submit" value="Search!" class="search-button">
+    </form>
+
+    {% if found_movie|length != 0 %}
+        {% for j in found_movie %}
+            <div class="card">
+                <img src="{% static j.movie_poster %}" alt="poster">
+                <p class="title">{{ j.title }}</p>
+                <p class="year">{{ j.year }}</p>
+                <p class="director">{{ j.director }}</p>
+            </div>
+        {% endfor %}
+    {% elif found_movie == 0 %}
+        <h2 class="card">Found nothing</h2>
+    {% endif %}
+{% endblock content %}

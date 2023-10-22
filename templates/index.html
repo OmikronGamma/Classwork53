@@ -11,7 +11,7 @@
     {% endblock head %}
 </head>
 <body>
-    <a href="/admin/">ADMIN</a>
+{#    <a href="/admin/">ADMIN</a>#}
 {#    <h2>Movies catalogue</h2>#}
     <h2>Welcome, {{ username }}</h2>
 
@@ -21,6 +21,7 @@
             <a href="{% url 'allactors' %}">Actors</a>
             <a href="{% url 'alldirectors' %}">Directors</a>
             <a href="{% url 'subscr' %}">Movies catalogue</a>
+            <a href="{% url 'search' %}">Movies search</a>
             <a href="{% url 'home' %}">GLAGNE</a>
             {% if user.username %}
                 <a href="{% url 'submanager' %}">Submanager</a>

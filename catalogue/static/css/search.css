@@ -1,0 +1,21 @@
+.search-form {
+    margin-top: 10px;
+}
+
+.search-form label {
+    font-size: 30px;
+}
+
+.search-form input {
+    width: 12em;
+    height: 2em;
+    font-size: 25px;
+    text-align: center;
+}
+
+.search-button {
+    width: 150px;
+    height: 40px;
+    font-size: 20px;
+    margin-top: 20px;
+}
